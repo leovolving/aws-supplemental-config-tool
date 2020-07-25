@@ -1,0 +1,24 @@
+{
+    "companyName": "MBC",
+    "projectName": "Trail Stopper",
+    "s3Bucket": "mbc",
+    "s3": "trail-stopper",
+    "allPropertiesRequired": true,
+    "requiredProperties": null,
+    "properties": [
+        [
+            "Stocks",
+            "These are the stocks that Trail Stopper will check.",
+            [
+                [
+                    {
+                        "name": "STOCKS", 
+                        "inputType": "text", 
+                        "label": "Stocks", 
+                        "instructions": "Add the 3 letter ticker, comma separated"
+                    }
+                ]
+            ]
+        ]
+    ]
+}
