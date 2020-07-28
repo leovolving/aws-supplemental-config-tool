@@ -4,7 +4,8 @@
   "description": "Starter template for a Node.js Express API with JSON Web Token.",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
+    "dev": "nodemon index.js",
+    "start": "node index.js",
     "test": "echo \"Warning: no test specified\" && exit 0"
   },
   "author": "Leo Yockey (leo@leoyockey.com)",
