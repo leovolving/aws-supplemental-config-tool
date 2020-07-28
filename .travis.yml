@@ -1,0 +1,10 @@
+language: node_js
+node_js: node
+before_script:
+- cd api
+deploy:
+  provider: heroku
+  app: harriet-api
+  api_key:
+    secure: f6lVJSBI9pJc4mpY3R+Vr+xdGgBVvBYh+GcWveemFT+QHYzH79Veq5JGCkTrzc/7tUNw/0LqZv7Pnp06hrBsJ4thsriLc/yybiDAXL4cXSbz1hkUII7T2ckuVF3W2P/+Z8UEycgfg4XV08lvVlEjrPjuV8TH7+pp4a5V1n2QB1vATFJ9h8Z/7EvuLimIiFK1LPfrJ1MvG0wU89oqtof7/VqxLCAKRwFInckYlakv+QtM5yUkmjiCy1I9RWYYMLuXwPIo+7HrR8O4u8O5eGS18lVubp8QJNHzD9iJE+U1l+TA5BsPOvCw7yBYXtE9HuADHAi04bktb0HQz0RABDy/SL+8TEQwTN/gtiQzYSHuNKJyHSo5fmuDYXkjliVCtbXJy54VnAmcpytnXDi1HdF8dZPMJNgEZjk50uOg7ci20GqrQKhwhXplAQ40KQlAeVvyfwU4pwaNdTT0D117kZSwXHq8hYRIjefYaM2ZfREjqGwNj1PKyNEpcytDet2u9ow9mbYgbsWzbJP3U+5Eyr+3cd10P+y3yIy/MN90cv73qWmFTpfUzIX2wlwnI1RP/itHr6TIWxYnAGuREUXcx2IaUcCb7kTnofPkn6gaHxg0GbVkpvXaxe8hnQMtFXZFbRtJK+Ye/ErcwbvE9rix4dnZRJlq2zxDPhXDg8po+4/uM1Y=
+  on: master
