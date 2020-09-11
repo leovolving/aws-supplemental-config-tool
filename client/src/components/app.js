@@ -4,6 +4,14 @@ import { Auth0Provider } from "@auth0/auth0-react";
 import Header from './header';
 import Home from './home';
 
+// TODO: setup env variables and replace with prod server
+const process = {
+	env: {
+		AUTH0_NAME: 'dev-cdjjnybm',
+		AUTH0_CLIENT_ID: 'zgT5hA906Nnp2fPyvTRja411wFqFkg81'
+	}
+}
+
 const App = () =>  (
 	<Auth0Provider
     domain={`${process.env.AUTH0_NAME}.us.auth0.com`}
