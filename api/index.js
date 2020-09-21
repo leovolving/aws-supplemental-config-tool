@@ -3,6 +3,7 @@ const express = require("express");
 const cors = require('cors');
 const routes = require('./routes');
 const morgan = require('morgan');
+const mongoose = require('mongoose');
 const config = require('./config.json');
 
 const app = express();
@@ -25,6 +26,14 @@ app.use((error, _req, res, next) => {
       res.render('Something broke!', { error });
 });
 
-// Establishing Port
-const PORT = process.env.PORT || 5050;
-app.listen(PORT, () => console.info(`API listening at port: ${PORT}`));
+// Connect to DB
+mongoose.connect('mongodb://localhost/harriet', {useNewUrlParser: true, useUnifiedTopology: true});
+const db = mongoose.connection;
+
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  console.info('Connected to the DB');
+  // Establishing Port
+  const PORT = process.env.PORT || 5050;
+  app.listen(PORT, () => console.info(`API listening at port: ${PORT}`));
+});
