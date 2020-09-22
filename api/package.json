@@ -4,6 +4,7 @@
   "description": "Starter template for a Node.js Express API with JSON Web Token.",
   "main": "index.js",
   "scripts": {
+    "db": "mongod --dbpath ~/data/db",
     "dev": "nodemon index.js",
     "start": "node index.js",
     "test": "echo \"Warning: no test specified\" && exit 0"

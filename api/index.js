@@ -18,16 +18,12 @@ app.use('/', routes);
 
 // Error Handlers
 app.use((error, _req, res, next) => {
-    console.warn(error.stack);
-
+    res.status(error.status).send(error.inner);
     if (res.headersSent) return next(error);
-
-      res.status(500);
-      res.render('Something broke!', { error });
 });
 
 // Connect to DB
-mongoose.connect('mongodb://localhost/harriet', {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(process.env.DATABASE_URL || 'mongodb://localhost/harriet', {useNewUrlParser: true, useUnifiedTopology: true});
 const db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'connection error:'));
