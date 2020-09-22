@@ -18,8 +18,8 @@ app.use('/', routes);
 
 // Error Handlers
 app.use((error, _req, res, next) => {
-    res.status(error.status).send(error.inner);
     if (res.headersSent) return next(error);
+    res.status(error.status).send(error.inner);
 });
 
 // Connect to DB
