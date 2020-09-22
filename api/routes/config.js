@@ -34,13 +34,13 @@ const router = new Router();
 const prefix = '/config'
 
 // TODO: only allow admins to access this endpoint
-router.post(prefix, (req, res) => {
-  const customer = new Config(req.body);
-  customer.save((err) => {
-    if (err) return err;
-  });
-  res.status(201).send(customer);
-});
+// router.post(prefix, (req, res) => {
+//   const customer = new Config(req.body);
+//   customer.save((err) => {
+//     if (err) return err;
+//   });
+//   res.status(201).send(customer);
+// });
 
 router.get(prefix, checkJwt, (req, res) => {
   Config.findOne({ 'auth0Users.id': req.user.sub }, (e, c) => {
