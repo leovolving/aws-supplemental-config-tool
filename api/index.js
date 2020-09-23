@@ -20,7 +20,7 @@ app.use('/', routes);
 app.use((error, _req, res, next) => {
     if (res.headersSent) return next(error);
     const status = error.status >= 100 && error.status < 600 ? error.status : 500
-    res.status(status).send(error.error);
+    res.status(status).send(error.message || error.error);
 });
 
 // Connect to DB
