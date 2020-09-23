@@ -33,6 +33,8 @@ const checkJwt = jwt({
 const router = new Router();
 const prefix = '/config'
 
+const WHERE = req => ({'auth0Users.id': req.user.sub === process.env.MACHINE_CLIENT_ID ? req.headers['x-user-id'] : req.user.sub});
+
 // TODO: only allow admins to access this endpoint
 // router.post(prefix, (req, res) => {
 //   const customer = new Config(req.body);
@@ -43,9 +45,21 @@ const prefix = '/config'
 // });
 
 router.get(prefix, checkJwt, (req, res) => {
-  Config.findOne({ 'auth0Users.id': req.user.sub }, (e, c) => {
+  Config.findOne(WHERE(req), (e, c) => {
     if (e) return e;
     res.status(200).send(c);
+  });
+});
+
+router.put(prefix, checkJwt, async (req, res) => {
+  const update = {};
+  for (let property in req.body) {
+    update[`properties.${property}`] = req.body[property];
+  }
+
+  await Config.findOneAndUpdate(WHERE(req), update, {new: true}, (e, c) => {
+    if (e) return e;
+    res.status(201).send(c);
   });
 });
 
