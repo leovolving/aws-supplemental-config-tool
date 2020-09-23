@@ -19,9 +19,8 @@ app.use('/', routes);
 // Error Handlers
 app.use((error, _req, res, next) => {
     if (res.headersSent) return next(error);
-    console.log({error})
     const status = error.status >= 100 && error.status < 600 ? error.status : 500
-    res.status(status).send(error.inner);
+    res.status(status).send(error.error);
 });
 
 // Connect to DB
