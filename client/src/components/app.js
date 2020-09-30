@@ -1,7 +1,6 @@
 import { h } from 'preact';
 import { Auth0Provider } from "@auth0/auth0-react";
 
-import Header from './header';
 import Home from './home';
 
 // TODO: setup env variables and replace with prod server
@@ -21,7 +20,6 @@ const App = () =>  (
     scope="read:current_user update:current_user_metadata"
   >
 	<div id="app">
-		<Header />
 		<Home path="/" />
 	</div>
 	</Auth0Provider>
