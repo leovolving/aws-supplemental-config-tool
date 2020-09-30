@@ -1,30 +1,24 @@
-.header {
-	align-items: center;
-	color: #FFF;
+.layout {
 	display: flex;
-	justify-content: space-between;
-	position: fixed;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 56px;
-	padding: 0;
-	background: #673AB7;
-	box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-	z-index: 50;
 }
 
-.header > * {
-	padding: 0 15px;
+.layout > div {
+	padding: 60px;
 }
 
-.header h1 {
+.sidebar {
+	background-color: #DFD2C1;
+	max-width: 500px;
+	height: 100vh;
+	display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.userNav {
+	text-align: right;
+}
+
+.userNav p {
 	margin: 0;
-	font-size: 24px;
-	line-height: 56px;
-	font-weight: 400;
-}
-
-.header h2 {
-	font-size: 100%;
 }

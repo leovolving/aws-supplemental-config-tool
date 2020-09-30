@@ -28,12 +28,19 @@ const Profile = () => {
   console.log({config})
 
   return (
-    isAuthenticated && (
+    isAuthenticated && config && Object.keys(config).length && (
       <div>
-        <Layout />
-        <img src={user.picture} alt={user.name} />
-        <h2>{user.name}</h2>
-        <p>{user.email}</p>
+        <Layout 
+          projectName={config.projectName}
+          userName={config.auth0Users.find(a => a.id === user.sub).name}
+          pageTitle="Configuration Settings"
+          pageDescription={`Here is where you will be able to change any settings you need to make ${config.projectName} run just the way you like it. Any changes will take affect immediately, unless otherwise specified by our Bukoba Beach rep.`}
+          subFooter="These configuration settings are for the sole use of Company Name."
+        >
+          <img src={user.picture} alt={user.name} />
+          <h2>{user.name}</h2>
+          <p>{user.email}</p>
+        </Layout>
       </div>
     )
   );
