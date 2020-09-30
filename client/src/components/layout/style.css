@@ -9,10 +9,14 @@
 .sidebar {
 	background-color: #DFD2C1;
 	max-width: 500px;
-	height: 100vh;
+	min-height: 100vh;
 	display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+.content {
+	flex: 1;
 }
 
 .userNav {

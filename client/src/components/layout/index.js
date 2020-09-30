@@ -39,7 +39,7 @@ const Layout = props => {
 					<p>support@bukobabeach.com</p>
 				</footer>
 			</div>
-			<div>
+			<div class={style.content}>
 				<UserSection userName={userName} />
 				{children}
 			</div>
