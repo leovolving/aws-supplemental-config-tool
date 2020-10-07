@@ -1,6 +1,6 @@
 import { h } from 'preact';
 import { useAuth0 } from "@auth0/auth0-react";
-import Text from '../../utils/text';
+import Text from '../text';
 import style from './style.css';
 
 const UserSection = ({userName}) => {

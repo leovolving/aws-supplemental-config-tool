@@ -2,11 +2,8 @@
 	display: flex;
 }
 
-.layout > div {
-	padding: 60px;
-}
-
 .sidebar {
+	padding: 60px;
 	background-color: #DFD2C1;
 	max-width: 500px;
 	min-height: 100vh;

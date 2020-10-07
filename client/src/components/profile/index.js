@@ -1,7 +1,8 @@
 import { h } from 'preact';
 import { useEffect, useState } from 'preact/hooks';
 import { useAuth0 } from '@auth0/auth0-react';
-import Text from '../../utils/text';
+import Text from '../text';
+import PageSection from '../page-section';
 import Layout from '../layout';
 
 const Profile = () => {
@@ -15,8 +16,7 @@ const Profile = () => {
 
   useEffect(async() => {
     if (isAuthenticated) {
-      const token = await getAccessTokenSilently()
-      console.log({token})
+      const token = await getAccessTokenSilently();
       // TODO: replace with env variable once available
       fetch('http://localhost:5050/config', {credentials: 'same-origin', headers: {authorization: `Bearer ${token}`}})
       .then(res => res.json())
@@ -34,9 +34,12 @@ const Profile = () => {
           pageDescription={`Here is where you will be able to change any settings you need to make ${config.projectName} run just the way you like it. Any changes will take affect immediately, unless otherwise specified by our Bukoba Beach rep.`}
           subFooter={`These configuration settings are for the sole use of ${config.customerName}.`}
         >
-          <img src={user.picture} alt={user.name} />
-          <Text element="h2">{user.name}</Text>
-          <Text>{user.email}</Text>
+          <PageSection>
+            <img src={user.picture} alt={user.name} />
+            <Text element="h2">{user.name}</Text>
+            <Text>{user.email}</Text>
+          </PageSection>
+          <PageSection>Just here to test BG color for now</PageSection>
         </Layout>
       </div>
     )

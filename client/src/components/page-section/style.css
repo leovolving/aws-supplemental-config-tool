@@ -1,0 +1,11 @@
+.pageSection {
+    padding: 60px;
+}
+
+.pageSection:nth-of-type(odd) {
+    background-color: #fff;
+}
+
+.pageSection:nth-of-type(even) {
+    background-color: #F6F6F7;
+}
