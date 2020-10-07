@@ -1,0 +1,17 @@
+.button {
+    background-color: #F6F6F7;
+    padding: 5px 10px;
+    font-weight: 600;
+    font-size: 1em;
+    border: 1px solid #979797;
+}
+
+.button:hover,
+.button:focus {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.confirm {
+    background-color: #6CE9A3;
+}
