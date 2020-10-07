@@ -5,6 +5,21 @@ import Text from '../text';
 import PageSection from '../page-section';
 import Layout from '../layout';
 
+// TODO: move to separate file, with both "properties" and "section" as props
+const createFormSection = properties => section => {
+  const [header, description, formItems] = section;
+  return (
+    <PageSection>
+      <Text element="h3">{header}</Text>
+      <Text color="secondary">{description}</Text>
+      {formItems.map(f => {
+        const { name } = f;
+        return <Text>{properties[name]}</Text> // TODO: replace with actual form inputs
+      })}
+    </PageSection>
+  );
+}
+
 const Profile = () => {
   const { user, getAccessTokenSilently, isAuthenticated, isLoading } = useAuth0();
 
@@ -24,6 +39,8 @@ const Profile = () => {
     }
   }, [isAuthenticated]);
 
+  const createForms = createFormSection(config.properties);
+
   return (
     isAuthenticated && config && Object.keys(config).length && (
       <div>
@@ -34,12 +51,12 @@ const Profile = () => {
           pageDescription={`Here is where you will be able to change any settings you need to make ${config.projectName} run just the way you like it. Any changes will take affect immediately, unless otherwise specified by our Bukoba Beach rep.`}
           subFooter={`These configuration settings are for the sole use of ${config.customerName}.`}
         >
+          {config.writeData.map(createForms)}
           <PageSection>
             <img src={user.picture} alt={user.name} />
             <Text element="h2">{user.name}</Text>
             <Text>{user.email}</Text>
           </PageSection>
-          <PageSection>Just here to test BG color for now</PageSection>
         </Layout>
       </div>
     )
