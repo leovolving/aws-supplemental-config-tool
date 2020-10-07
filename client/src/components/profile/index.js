@@ -5,21 +5,7 @@ import FormFooter from '../form-footer';
 import Layout from '../layout';
 import PageSection from '../page-section';
 import Text from '../text';
-
-// TODO: move to separate file, with both "properties" and "section" as props
-const createFormSection = properties => section => {
-  const [header, description, formItems] = section;
-  return (
-    <PageSection>
-      <Text element="h3">{header}</Text>
-      <Text color="secondary">{description}</Text>
-      {formItems.map(f => {
-        const { name } = f;
-        return <Text>{properties[name]}</Text> // TODO: replace with actual form inputs
-      })}
-    </PageSection>
-  );
-}
+import FormSection from '../form-item-section';
 
 const Profile = () => {
   const { user, getAccessTokenSilently, isAuthenticated, isLoading } = useAuth0();
@@ -40,8 +26,6 @@ const Profile = () => {
     }
   }, [isAuthenticated]);
 
-  const createForms = createFormSection(config.properties);
-
   return (
     isAuthenticated && config && Object.keys(config).length && (
       <div>
@@ -53,12 +37,15 @@ const Profile = () => {
           subFooter={`These configuration settings are for the sole use of ${config.customerName}.`}
         >
           <form>
-            {config.writeData.map(createForms)}
+            {config.writeData.map(s => <FormSection section={s} properties={config.properties} />)}
+
+            {/* // TODO: remove section */}
             <PageSection>
               <img src={user.picture} alt={user.name} />
               <Text element="h2">{user.name}</Text>
               <Text>{user.email}</Text>
             </PageSection>
+
             <FormFooter />
           </form>
         </Layout>
