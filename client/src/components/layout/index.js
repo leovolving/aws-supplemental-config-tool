@@ -18,13 +18,14 @@ const Layout = props => {
 					<Text element="h2">{pageTitle}</Text>
 					<Text color="secondary">{pageDescription}</Text>
 				</div>
-
-				{subFooter && <Text>{subFooter}</Text>}
-
-				<footer>
-					<Text element="h3" color="secondary">Support:</Text>
-					<Text>+1 (818) 555 - 5555</Text>
-					<Text>support@bukobabeach.com</Text>
+				{subFooter && <Text className={style.subFooter}>{subFooter}</Text>}
+				<footer className={style.footer}>
+					
+						<Text element="h3" color="secondary" className={style.h3}>Support:</Text>
+					<div>
+						<Text>+1 (818) 555 - 5555</Text>
+						<Text>support@bukobabeach.com</Text>
+					</div>
 				</footer>
 			</div>
 			<div class={style.content}>

@@ -1,4 +1,4 @@
-import { h } from 'preact';
+import { h, Fragment } from 'preact';
 import { useEffect, useState } from 'preact/hooks';
 import { useAuth0 } from '@auth0/auth0-react';
 import FormFooter from '../form-footer';
@@ -28,7 +28,7 @@ const Profile = () => {
 
   return (
     isAuthenticated && config && Object.keys(config).length && (
-      <div>
+      <Fragment>
         <Layout 
           projectName={config.projectName}
           userName={config.auth0Users.find(a => a.id === user.sub).name}
@@ -49,7 +49,7 @@ const Profile = () => {
             <FormFooter />
           </form>
         </Layout>
-      </div>
+      </Fragment>
     )
   );
 };

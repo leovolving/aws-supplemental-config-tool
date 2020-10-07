@@ -3,15 +3,81 @@
 }
 
 .sidebar {
-	padding: 60px;
+	padding: 10px;
 	background-color: #DFD2C1;
-	max-width: 500px;
-	min-height: 100vh;
 	display: flex;
     flex-direction: column;
-    justify-content: space-between;
+	justify-content: space-between;
+	box-shadow: 0 3px 5px #3F301D;
+	font-size: 14px;
+	position: relative;
 }
 
 .content {
 	flex: 1;
 }
+
+.layout {
+	flex-direction: column;
+}
+
+.footer {
+	display: flex;
+	position: fixed;
+	bottom: 0;
+	right: 0;
+    background: #DFD2C1;
+    margin-left: -10px;
+    font-size: 14px;
+	padding: 5px;
+	align-items: center;
+	border-top: 1px solid #979797;
+	border-left: 1px solid #979797;
+}
+
+.footer > * {
+	flex: 1;
+}
+
+.subFooter {
+	position: absolute;
+    bottom: -50px;
+}
+
+.h3 {
+	margin-top: 0;
+	margin-bottom: 5px;
+	padding-right: 5px;
+}
+
+@media screen and (min-width: 750px) { 
+	.layout {
+		flex-direction: row;
+	}
+
+	.sidebar {
+		padding: 20px;
+		min-height: 100vh;
+		max-width: 500px;
+		font-size: revert;
+	}
+
+	.footer {
+		display: revert;
+		position: revert;
+		bottom: revert;
+		right: revert;
+		background: revert;
+		margin-left: revert;
+		font-size: revert;
+		padding: revert;
+		align-items: revert;
+		border-top: revert;
+		border-left: revert;
+	}
+
+	.subFooter {
+		position: revert;
+		bottom: revert;
+	}
+ }
