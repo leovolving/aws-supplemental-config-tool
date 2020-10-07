@@ -1,12 +1,11 @@
 import { h } from 'preact';
 import { useEffect, useState } from 'preact/hooks';
 import { useAuth0 } from '@auth0/auth0-react';
+import Text from '../../utils/text';
 import Layout from '../layout';
 
 const Profile = () => {
-    const u = useAuth0();
-  const { user, getAccessTokenSilently, isAuthenticated, isLoading } = u
-  console.log({u})
+  const { user, getAccessTokenSilently, isAuthenticated, isLoading } = useAuth0();
 
   if (isLoading) {
     return <div>Loading ...</div>;
@@ -23,9 +22,7 @@ const Profile = () => {
       .then(res => res.json())
       .then(setConfig)
     }
-  }, [isAuthenticated])
-
-  console.log({config})
+  }, [isAuthenticated]);
 
   return (
     isAuthenticated && config && Object.keys(config).length && (
@@ -35,11 +32,11 @@ const Profile = () => {
           userName={config.auth0Users.find(a => a.id === user.sub).name}
           pageTitle="Configuration Settings"
           pageDescription={`Here is where you will be able to change any settings you need to make ${config.projectName} run just the way you like it. Any changes will take affect immediately, unless otherwise specified by our Bukoba Beach rep.`}
-          subFooter="These configuration settings are for the sole use of Company Name."
+          subFooter={`These configuration settings are for the sole use of ${config.customerName}.`}
         >
           <img src={user.picture} alt={user.name} />
-          <h2>{user.name}</h2>
-          <p>{user.email}</p>
+          <Text element="h2">{user.name}</Text>
+          <Text>{user.email}</Text>
         </Layout>
       </div>
     )

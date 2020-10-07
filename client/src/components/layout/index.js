@@ -1,5 +1,6 @@
 import { h } from 'preact';
 import { useAuth0 } from "@auth0/auth0-react";
+import Text from '../../utils/text';
 import style from './style.css';
 
 const UserSection = ({userName}) => {
@@ -7,36 +8,35 @@ const UserSection = ({userName}) => {
 	if (userName) {
 		return (
 			<nav class={style.userNav}>
-				<p>{userName}</p>
-				<button onClick={logout}>Log Out</button>
+				<Text color="secondary">{userName}</Text>
+				<button className={style.logButton} onClick={logout}>Log Out</button>
 			</nav>
 		)
 	} else return null // TODO: handle loggedOut state
 }
 
 const Layout = props => {
-	console.log({props})
 	const { children, projectName, userName, pageTitle, pageDescription, subFooter } = props;
 	// TODO replace footer contact info with an inquiry contact on landing page
 	return (
 		<div class={style.layout}>
 			<div class={style.sidebar}>
 				<header>
-					<h1>{projectName}</h1>
-					<p>Powered By Bukoba Beach</p>
+					<Text element="h1">{projectName}</Text>
+					<Text>Powered By Bukoba Beach</Text>
 				</header>
 
 				<div>
-					<h2>{pageTitle}</h2>
-					<p>{pageDescription}</p>
+					<Text element="h2">{pageTitle}</Text>
+					<Text color="secondary">{pageDescription}</Text>
 				</div>
 
-				{subFooter && <p>{subFooter}</p>}
+				{subFooter && <Text>{subFooter}</Text>}
 
 				<footer>
-					<h3>Support:</h3>
-					<p>+1 (818) 555 - 5555</p>
-					<p>support@bukobabeach.com</p>
+					<Text element="h3" color="secondary">Support:</Text>
+					<Text>+1 (818) 555 - 5555</Text>
+					<Text>support@bukobabeach.com</Text>
 				</footer>
 			</div>
 			<div class={style.content}>

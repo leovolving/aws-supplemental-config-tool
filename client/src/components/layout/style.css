@@ -21,8 +21,22 @@
 
 .userNav {
 	text-align: right;
+	font-weight: bold;
 }
 
 .userNav p {
 	margin: 0;
+}
+
+.logButton {
+	background: inherit;
+	border: 0;
+	color:  #3F301D;
+	text-decoration: underline;
+}
+
+.logButton:hover,
+.logButton:focus {
+	text-decoration: none;
+	cursor: pointer;
 }
