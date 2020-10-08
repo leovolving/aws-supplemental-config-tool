@@ -1,22 +1,23 @@
-import { h, Fragment } from 'preact';
+import { h } from 'preact';
 import Text from '../text';
 import PageSection from '../page-section';
+import style from './style.css';
 
 const FormSection = props => {
     const { properties, section } = props;
     const [header, description, formItems] = section;
 
     return (
-      <PageSection>
-        <Text element="h3">{header}</Text>
-        <Text color="secondary">{description}</Text>
+      <PageSection className={style.pageSection}>
+        <Text element="h3" className={style.header}>{header}</Text>
+        <Text color="secondary" className={style.description}>{description}</Text>
         {formItems.map(f => {
           const { name, formInputType, label } = f;
           return (
-            <Fragment>
-              <Text element="label" htmlFor={name}>{label}</Text>
+            <div>
+              <Text color="secondary" element="label" htmlFor={name}>{label}</Text>
               <input id={name} name={name} value={properties[name]} type={formInputType} />
-            </Fragment>
+            </div>
           )
         })}
       </PageSection>

@@ -18,6 +18,13 @@
     margin: 0;
 }
 
+.label {
+    display: block;
+    padding: 20px 0;
+    font-weight: bold;
+    
+}
+
 @media screen and (min-width: 750px) { 
     .h1 {
         font-size: revert;

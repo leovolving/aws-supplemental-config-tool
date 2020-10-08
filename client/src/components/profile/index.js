@@ -35,7 +35,6 @@ const Profile = () => {
           userName={config.auth0Users.find(a => a.id === user.sub).name}
           pageTitle="Configuration Settings"
           pageDescription={`Here is where you will be able to change any settings you need to make ${config.projectName} run just the way you like it. Any changes will take affect immediately, unless otherwise specified by our Bukoba Beach rep.`}
-          subFooter={`These configuration settings are for the sole use of ${config.customerName}.`}
         >
           <Form>
             {config.writeData.map(s => <FormSection section={s} properties={config.properties} />)}
@@ -45,6 +44,7 @@ const Profile = () => {
               <img src={user.picture} alt={user.name} />
               <Text element="h2">{user.name}</Text>
               <Text>{user.email}</Text>
+              <input type="text" />
             </PageSection>
           </Form>
         </Layout>
