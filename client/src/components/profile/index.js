@@ -1,6 +1,7 @@
 import { h, Fragment } from 'preact';
 import { useEffect, useState } from 'preact/hooks';
 import { useAuth0 } from '@auth0/auth0-react';
+import Form from '../form';
 import FormFooter from '../form-footer';
 import Layout from '../layout';
 import PageSection from '../page-section';
@@ -36,7 +37,7 @@ const Profile = () => {
           pageDescription={`Here is where you will be able to change any settings you need to make ${config.projectName} run just the way you like it. Any changes will take affect immediately, unless otherwise specified by our Bukoba Beach rep.`}
           subFooter={`These configuration settings are for the sole use of ${config.customerName}.`}
         >
-          <form>
+          <Form>
             {config.writeData.map(s => <FormSection section={s} properties={config.properties} />)}
 
             {/* // TODO: remove section */}
@@ -45,9 +46,7 @@ const Profile = () => {
               <Text element="h2">{user.name}</Text>
               <Text>{user.email}</Text>
             </PageSection>
-
-            <FormFooter />
-          </form>
+          </Form>
         </Layout>
       </Fragment>
     )
