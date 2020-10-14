@@ -6,7 +6,11 @@ import FormSection from '../form-section';
 
 const Form = (props) => {
     const { data, properties } = props;
+
+    const [isSuccess, setSuccess] = useState(false);
     const [values, setValues] = useState({});
+
+    const unsetSuccess = () => setSuccess(false);
 
     const onChange = e => {
         const { name, value } = e.target;
@@ -14,6 +18,7 @@ const Form = (props) => {
     }
 
     const onSubmit = async e => {
+        unsetSuccess();
         e.preventDefault();
         const { getAccessTokenSilently } = useAuth0();
         const token = await getAccessTokenSilently();
@@ -27,7 +32,7 @@ const Form = (props) => {
             method: 'PUT'
         })
         .then(res => res.json())
-        .then(res => console.log({res}))
+        .then(setSuccess)
     }
 
     const resetForm = () => {
@@ -47,7 +52,7 @@ const Form = (props) => {
     return (
         <form onSubmit={onSubmit}>
             {data.map(s => <FormSection section={s} values={values} onChange={onChange} />)}
-            <FormFooter onCancel={resetForm} />
+            <FormFooter onCancel={resetForm} isSuccess={isSuccess} onMessageClose={unsetSuccess} />
         </form>
     );
 }

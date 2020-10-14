@@ -1,0 +1,61 @@
+.message {
+    min-height: 60px;
+    border: 5px double;
+    padding: 20px;
+    position: relative;
+}
+
+.success {
+    border-color: #6CE9A3;
+}
+
+.messageText {
+    margin: 20px 0;
+}
+
+.logoutButton {
+    font-weight: normal;
+}
+
+.closeButton {
+    position: absolute;
+    top: 0;
+    right: 20px;
+    border: 0;
+    background-color: inherit;
+}
+
+/* 
+    Using an "X" icon for the close button
+*/
+
+.closeIcon {
+    height: 50px;
+    width: 50px;
+    position: relative;
+}
+
+.closeIcon:before,
+.closeIcon:after {
+    position: absolute;
+    top: 10px;
+    content: '';
+    width: 15px;
+    height: 1px;
+    background-color: #000;
+}
+
+.closeIcon:focus:before,
+.closeIcon:focus:after,
+.closeIcon:hover:before,
+.closeIcon:hover:after {
+    height: 2px;
+}
+
+.closeIcon::before {
+    transform: rotate(45deg);
+}
+
+.closeIcon::after {
+    transform: rotate(-45deg);
+}
