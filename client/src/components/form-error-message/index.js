@@ -16,14 +16,13 @@ const ErrorItem = props => {
 }
 
 const FormErrorMessage = props => {
-    const { errors, onMessageClose } = props;
+    const { errors } = props;
     
     return (
-        <div className={style.formErrorMessage}>
+        <div className={style.formErrorMessage} role="alert">
             <Message
                 type="error"
                 text="Something's wrong. Please fix the errors and try again."
-                onClose={onMessageClose}
                 >
                 {errors.map(ErrorItem)}
             </Message>

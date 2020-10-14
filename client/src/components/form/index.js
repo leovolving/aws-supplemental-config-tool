@@ -21,6 +21,7 @@ const Form = (props) => {
 
     const onSubmit = async e => {
         unsetSuccess();
+        resetErrors();
         e.preventDefault();
         const { getAccessTokenSilently } = useAuth0();
         const token = await getAccessTokenSilently();
@@ -59,7 +60,7 @@ const Form = (props) => {
 
     return (
         <Fragment>
-            {!!errors.length && <FormErrorMessage errors={errors} onMessageClose={resetErrors} />}
+            {!!errors.length && <FormErrorMessage errors={errors} />}
             <form onSubmit={onSubmit}>
                 {data.map(s => <FormSection section={s} values={values} onChange={onChange} />)}
                 <FormFooter onCancel={resetForm} isSuccess={isSuccess} onMessageClose={unsetSuccess} />
