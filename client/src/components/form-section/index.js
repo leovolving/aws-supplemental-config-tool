@@ -4,7 +4,7 @@ import PageSection from '../page-section';
 import style from './style.css';
 
 const FormSection = props => {
-    const { properties, section } = props;
+    const { section, onChange, values } = props;
     const [header, description, formItems] = section;
 
     return (
@@ -16,7 +16,14 @@ const FormSection = props => {
           return (
             <div className={style.formItem}>
               <Text color="secondary" element="label" htmlFor={name}>{label}</Text>
-              <input className={style[formInputType]} id={name} name={name} value={properties[name]} type={formInputType} />
+              <input
+                className={style[formInputType]}
+                id={name}
+                name={name}
+                onChange={onChange}
+                type={formInputType}
+                value={values[name]}
+              />
             </div>
           )
         })}
