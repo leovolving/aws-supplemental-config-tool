@@ -2,7 +2,6 @@ import { h, Fragment } from 'preact';
 import { useEffect, useState } from 'preact/hooks';
 import { useAuth0 } from '@auth0/auth0-react';
 import Form from '../form';
-import FormFooter from '../form-footer';
 import Layout from '../layout';
 import PageSection from '../page-section';
 import Text from '../text';
