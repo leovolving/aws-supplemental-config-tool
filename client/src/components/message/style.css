@@ -9,6 +9,10 @@
     border-color: #6CE9A3;
 }
 
+.error {
+    border-color: red;
+}
+
 .messageText {
     margin: 20px 0;
 }

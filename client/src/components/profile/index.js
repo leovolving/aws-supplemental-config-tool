@@ -24,7 +24,7 @@ const Profile = () => {
   }, [isAuthenticated]);
 
   return (
-    isAuthenticated && config && Object.keys(config).length && (
+    isAuthenticated && config && !!Object.keys(config).length && (
       <Fragment>
         <Layout 
           projectName={config.projectName}

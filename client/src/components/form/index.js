@@ -1,6 +1,7 @@
-import { h } from 'preact';
+import { h, Fragment } from 'preact';
 import { useEffect, useState } from 'preact/hooks';
 import { useAuth0 } from '@auth0/auth0-react';
+import FormErrorMessage from '../form-error-message';
 import FormFooter from '../form-footer';
 import FormSection from '../form-section';
 
@@ -8,6 +9,7 @@ const Form = (props) => {
     const { data, properties } = props;
 
     const [isSuccess, setSuccess] = useState(false);
+    const [errors, setErrors] = useState([]);
     const [values, setValues] = useState({});
 
     const unsetSuccess = () => setSuccess(false);
@@ -33,7 +35,10 @@ const Form = (props) => {
         })
         .then(res => res.json())
         .then(setSuccess)
+        .catch(onError)
     }
+
+    const resetErrors = () => setErrors([]);
 
     const resetForm = () => {
         const flattenedData = data.map(d => [...d[2]][0]);
@@ -45,15 +50,21 @@ const Form = (props) => {
         setValues(newValues);
     }
 
+    // TODO: handle real errors once they are setup in API
+    const onError = () => setErrors([{name: 'stocks', message: 'Error'}])
+
     useEffect(() => {
         return resetForm();
     }, []);
 
     return (
-        <form onSubmit={onSubmit}>
-            {data.map(s => <FormSection section={s} values={values} onChange={onChange} />)}
-            <FormFooter onCancel={resetForm} isSuccess={isSuccess} onMessageClose={unsetSuccess} />
-        </form>
+        <Fragment>
+            {!!errors.length && <FormErrorMessage errors={errors} onMessageClose={resetErrors} />}
+            <form onSubmit={onSubmit}>
+                {data.map(s => <FormSection section={s} values={values} onChange={onChange} />)}
+                <FormFooter onCancel={resetForm} isSuccess={isSuccess} onMessageClose={unsetSuccess} />
+            </form>
+        </Fragment>
     );
 }
 

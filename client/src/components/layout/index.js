@@ -4,7 +4,7 @@ import UserSection from '../user-section';
 import style from './style.css';
 
 const Layout = props => {
-	const { children, projectName, userName, pageTitle, pageDescription, subFooter } = props;
+	const { children, projectName, userName, pageTitle, pageDescription } = props;
 	// TODO replace footer contact info with an inquiry contact on landing page
 	return (
 		<div class={style.layout}>

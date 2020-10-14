@@ -15,7 +15,7 @@ const FormSection = props => {
           const { name, formInputType, label } = f;
           return (
             <div className={style.formItem}>
-              <Text color="secondary" element="label" htmlFor={name}>{label}</Text>
+              <Text id={`${name}__label`} color="secondary" element="label" htmlFor={name}>{label}</Text>
               <input
                 className={style[formInputType]}
                 id={name}

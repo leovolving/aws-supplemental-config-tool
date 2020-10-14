@@ -5,7 +5,7 @@ import Text from '../text';
 import style from './style.css';
 
 const Message = props => {
-    const { onClose, text, type } = props;
+    const { children=null, onClose, text, type } = props;
     const className = `${style.message} ${style[type]}`;
     const { isAuthenticated, logout } = useAuth0();
 
@@ -15,7 +15,9 @@ const Message = props => {
                 {text}
             </Text>
 
-            {isAuthenticated && 
+            {children}
+
+            {isAuthenticated && type === 'success' &&
                 <Button actionType="confirm" htmlType="button" onClick={logout} className={style.logoutButton}>
                     Log Out
                 </Button>
