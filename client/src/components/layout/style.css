@@ -81,3 +81,9 @@
 		bottom: revert;
 	}
  }
+
+ @media screen and (min-width: 1000px) { 
+	.sidebar {
+		padding: 60px;
+	}
+}

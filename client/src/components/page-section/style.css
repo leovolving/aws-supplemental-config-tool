@@ -9,3 +9,9 @@
 .pageSection:nth-of-type(even) {
     background-color: #F6F6F7;
 }
+
+@media screen and (min-width: 1000px) { 
+    .pageSection {
+        padding: 60px;
+    }
+}

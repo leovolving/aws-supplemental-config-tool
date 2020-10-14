@@ -1,14 +1,39 @@
 .pageSection {
     display: flex;
     flex-direction: column;
-    align-items: center;
     margin-top: 50px;
 }
 
 .header {
     margin-top: 0;
+    font-size: 28px;
 }
 
 .description {
     width: 50%;
+}
+
+.formItem label {
+    text-align: center;
+}
+
+.text {
+    height: 30px;
+    border: 1px solid #979191;
+    box-shadow: 0 3px 5px #3F301D;
+    width: 50%;
+    border-radius: 5px;
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+}
+
+.pageSection:nth-of-type(odd) .text {
+    background-color: #F6F6F7;
+}
+
+.pageSection:nth-of-type(even) .text {
+    background-color: #fff;
 }

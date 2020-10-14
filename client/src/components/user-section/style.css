@@ -32,3 +32,10 @@
 		margin-top: 20px;
 	}
 }
+
+@media screen and (min-width: 750px) { 
+	.userNav {
+		margin-left: 60px;
+		margin-top: 60px;
+	}
+}

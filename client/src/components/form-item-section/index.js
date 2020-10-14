@@ -14,9 +14,9 @@ const FormSection = props => {
         {formItems.map(f => {
           const { name, formInputType, label } = f;
           return (
-            <div>
+            <div className={style.formItem}>
               <Text color="secondary" element="label" htmlFor={name}>{label}</Text>
-              <input id={name} name={name} value={properties[name]} type={formInputType} />
+              <input className={style[formInputType]} id={name} name={name} value={properties[name]} type={formInputType} />
             </div>
           )
         })}
