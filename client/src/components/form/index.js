@@ -23,20 +23,29 @@ const Form = (props) => {
         unsetSuccess();
         resetErrors();
         e.preventDefault();
+
         const { getAccessTokenSilently } = useAuth0();
         const token = await getAccessTokenSilently();
         // TODO: replace with env variable once available
-        fetch('http://localhost:5050/config', {
+        const fetchOptions = {
             body: JSON.stringify(values),
             headers: {
                 authorization: `Bearer ${token}`, 
                 'Content-Type': 'application/json'
             },
             method: 'PUT'
+        }
+
+        fetch('http://localhost:5050/config', fetchOptions)
+        .then(async res => {
+            if (res.status >= 200 && res.status <= 299) {
+                setSuccess(true);
+            } else {
+                const response = await res.json()
+                throw response;
+            }
         })
-        .then(res => res.json())
-        .then(setSuccess)
-        .catch(onError)
+        .catch(setErrors)
     }
 
     const resetErrors = () => setErrors([]);
@@ -50,9 +59,6 @@ const Form = (props) => {
 
         setValues(newValues);
     }
-
-    // TODO: handle real errors once they are setup in API
-    const onError = () => setErrors([{name: 'stocks', message: 'Error'}])
 
     useEffect(() => {
         return resetForm();

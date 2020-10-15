@@ -3,12 +3,15 @@ const jwt = require('express-jwt');
 const jwksRsa = require('jwks-rsa');
 const mongoose = require('mongoose');
 
+const validators = require('../utils/validators');
+
 // TODO: move to (and create) "models" directory
 const schema = new mongoose.Schema({
   allPropertiesRequired: Boolean,
   auth0Users: [{type: Map, of: String}], // array of objects - userId and email address
   createdAt: String,
   customerName: String,
+  functionName: String,
   lastUpdated: String,
   projectName: String,
   properties: Map,
@@ -32,6 +35,23 @@ const checkJwt = jwt({
   issuer: `https://${process.env.AUTH0_DOMAIN}.us.auth0.com/`,
   algorithms: ['RS256']
 });
+
+const getConfig = async (req ,_res, next) => {
+  Config.findOne(WHERE(req), (e, c) => {
+    if (e) return next(e);
+    req.customerConfig = c;
+    return next();
+  });
+}
+
+const validate = async (req, _res ,next) => {
+  const { functionName } = req.customerConfig;
+  if (validators[functionName]) {
+    const errors = validators[functionName](req);
+    if (errors && errors.length) return next({status: 409, error: errors});
+  }
+  return next();
+}
 
 const router = new Router();
 const prefix = '/config'
@@ -58,19 +78,19 @@ router.get(prefix, checkJwt, (req, res) => {
   });
 });
 
-router.put(prefix, checkJwt, async (req, res) => {
-  const update = {};
-  for (let property in req.body) {
-    update[`properties.${property}`] = req.body[property];
-  }
-
-  update.lastUpdated = new Date().toISOString();
-  update.updatedBy = req.user.sub;
-
-  await Config.findOneAndUpdate(WHERE(req), update, {new: true, useFindAndModify: false}, (e, c) => {
-    if (e) return e;
-    res.status(201).send(c);
-  });
+router.put(prefix, checkJwt, getConfig, validate, async (req, res, next) => {
+    const update = {};
+    for (let property in req.body) {
+      update[`properties.${property}`] = req.body[property];
+    }
+    
+    update.lastUpdated = new Date().toISOString();
+    update.updatedBy = req.user.sub;
+    
+    await req.customerConfig.updateOne(update, (e, c) => {
+      if (e) return next(e);
+      res.status(201).send(c);
+    });
 });
 
 module.exports = router;
