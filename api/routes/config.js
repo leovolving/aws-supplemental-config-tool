@@ -20,12 +20,7 @@ router.post(prefix, (req, res) => {
   res.status(201).send(customer);
 });
 
-router.get(prefix, checkJwt, (req, res) => {
-  Config.findOne(WHERE(req), (e, c) => {
-    if (e) return e;
-    res.status(200).send(c);
-  });
-});
+router.get(prefix, checkJwt, getConfig, (req, res) => res.status(200).send(req.customerConfig));
 
 router.put(prefix, checkJwt, getConfig, validate, async (req, res, next) => {
     const update = {};
