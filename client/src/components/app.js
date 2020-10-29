@@ -1,5 +1,4 @@
 import { h } from 'preact';
-import { useEffect, useState } from 'preact/hooks';
 import { Auth0Provider } from "@auth0/auth0-react";
 
 import Home from './home';
@@ -12,12 +11,12 @@ const process = {
 	}
 }
 
-const App = () => {
-	const [redirectUri, setRedirectUri] = useState(null);
-	useEffect(() => {
-		setRedirectUri(window.location.origin);
-	}, []);
+let redirectUri;
+if (typeof window !== 'undefined') {
+	redirectUri =  window.location.origin;
+}
 
+const App = () => {
 	return (
 		<Auth0Provider
 		domain={`${process.env.AUTH0_NAME}.us.auth0.com`}
