@@ -17,7 +17,7 @@ const Profile = () => {
     if (isAuthenticated) {
       const token = await getAccessTokenSilently();
       // TODO: replace with env variable once available
-      fetch('http://localhost:5050/config', {headers: {authorization: `Bearer ${token}`}})
+      fetch('https://harriet-api.herokuapp.com/config', {headers: {authorization: `Bearer ${token}`}})
       .then(res => res.json())
       .then(setConfig)
     }

@@ -36,7 +36,7 @@ const Form = (props) => {
             method: 'PUT'
         }
 
-        fetch('http://localhost:5050/config', fetchOptions)
+        fetch('https://harriet-api.herokuapp.com/config', fetchOptions)
         .then(async res => {
             if (res.status >= 200 && res.status <= 299) {
                 setSuccess(true);
