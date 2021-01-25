@@ -26,7 +26,6 @@ const Form = (props) => {
 
         const { getAccessTokenSilently } = useAuth0();
         const token = await getAccessTokenSilently();
-        // TODO: replace with env variable once available
         const fetchOptions = {
             body: JSON.stringify(values),
             headers: {
@@ -36,7 +35,7 @@ const Form = (props) => {
             method: 'PUT'
         }
 
-        fetch('https://harriet-api.herokuapp.com/config', fetchOptions)
+        fetch(`${process.env.PREACT_APP_API_DOMAIN}/config`, fetchOptions)
         .then(async res => {
             if (res.status >= 200 && res.status <= 299) {
                 setSuccess(true);

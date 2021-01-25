@@ -16,8 +16,7 @@ const Profile = () => {
   useEffect(async() => {
     if (isAuthenticated) {
       const token = await getAccessTokenSilently();
-      // TODO: replace with env variable once available
-      fetch('https://harriet-api.herokuapp.com/config', {headers: {authorization: `Bearer ${token}`}})
+      fetch(`${process.env.PREACT_APP_API_DOMAIN}/config`, {headers: {authorization: `Bearer ${token}`}})
       .then(res => res.json())
       .then(setConfig)
     }
